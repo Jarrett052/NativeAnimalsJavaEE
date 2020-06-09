@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Native animals</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--  DatePicker JavaScript & CSS -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+        <script>
+            $(document).ready(function() {
+                $(".datepicker").datepicker({
+                dateFormat: 'dd M yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1990:2030"
+                });
+            });
+//            $( ".selector" ).datepicker( "setDate", "+1" );
+        </script>
+        <h:outputScript library="js" name="formatDatePicker.js" />
+    <!--  DatePicker JavaScript & CSS -->
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+    </h:head>
+    <h:body style="background-image:url('/NativeAnimals/333.jpg'); background-size:cover">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="float:left; margin-left:0px; padding-left:0px; display: inline-block; vertical-align:">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="/NativeAnimals/index.xhtml" style="font-size:25px; margin-left:0px; float:left">Native animals</a>
+                </div>    
+                <ul class="nav navbar-nav" style="font-size:20px; display: inline-block; vertical-align:">
+                <li><a href="/NativeAnimals/index.xhtml">Home</a></li>
+                <li class="active"><a href="/NativeAnimals/user/rescueRecords.xhtml">Rescue record</a></li>
+<!--                <li><a href="login.xhtml">Login</a></li>-->
+                </ul>
+              <form class="navbar-form navbar-left" action="/action_page.php" style="padding-left: 800px">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="search" style="font-size:20px; width: 400px"></input>
+                    <div class="input-group-btn" style="padding-right:0px">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+             </form>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Edit Rescue Record
+                </div>
+            </div>
+
+            <h:form id="MyForm">
+                <table class="table table-bordered ">
+
+                    <tr>
+                        <td width ="150" valign="top">Rescue ID:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "RescueId" >#{rescueRecordsController.rescueRecords.rescueId}</h:outputLabel>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Rescue Date: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "rescueDate" styleClass="form-control datepicker" value="#{rescueRecordsController.rescueRecords.rescueDate}" required="true"
+                                         validatorMessage="Please enter a valid Rescue date."
+                                         requiredMessage="Please enter a Rescue date. " style="width: 300px;">
+                            <f:converter converterId="DateTimeConverter" />
+                            </h:inputText>    
+<!--                            <h:inputText id = "rescueDate" value="#{rescueRecordsController.rescueRecords.rescueDate}" required="true"
+                                         validatorMessage="Please enter a valid Rescue date."
+                                         requiredMessage="Please enter a Rescue date. ">
+                            <f:convertDateTime pattern="EEE MMM dd HH:mm:ss zzz yyyy" locale="Australia"/>
+                            <f:convertDateTime type="date" pattern="dd MMM yyyy"/>
+                            <f:converter converterId="DateTimeConverter" />
+                            </h:inputText>    -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Animal Type: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "animalType" value="#{rescueRecordsController.rescueRecords.animalType}" required="true"
+                                         validatorMessage="Please enter a valid Animal Type."
+                                         requiredMessage="Please enter a Animal Type. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Animal ID: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "animalId" value="#{rescueRecordsController.rescueRecords.animalId}" required="true"
+                                         validatorMessage="Please enter a valid Animal ID."
+                                         requiredMessage="Please enter a Animal ID. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Animal Name: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "animalName" value="#{rescueRecordsController.rescueRecords.animalName}" required="true"
+                                         validatorMessage="Please enter a valid Animal Name."
+                                         requiredMessage="Please enter a Animal Name. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>    
+                        <td width ="100" valign="top">Rescue Street Number: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "streetNumber" value="#{rescueRecordsController.rescueRecords.rescueAddress.streetNumber}" binding="#{streetNumber}" required="true"
+                                         validatorMessage="Please enter a valid street number."
+                                         requiredMessage="Please enter an street number. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Rescue Street Address: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "streetAddress" value="#{rescueRecordsController.rescueRecords.rescueAddress.streetAddress}" binding="#{streetAddress}" required="true"
+                                         validatorMessage="Please enter a valid street address."
+                                         requiredMessage="Please enter an street address. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Rescue Suburb: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "suburb" value="#{rescueRecordsController.rescueRecords.rescueAddress.suburb}" binding="#{suburb}" required="true"
+                                         validatorMessage="Please enter a valid suburb."
+                                         requiredMessage="Please enter a suburb. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Rescue State: </td>
+                        <td valign="bottom">
+                            <h:selectOneMenu id="stateName" value="#{rescueRecordsController.rescueRecords.rescueAddress.state}" style="width: 300px; font-size: 15px" >
+                                <f:selectItem itemValue="#{null}" itemLabel="--------------------select--------------------" />
+                                <f:selectItems value="#{stateNameBean.testTheResult()}" var="c"  
+                                       itemLabel="#{c}" itemValue="#{c}" />
+                            </h:selectOneMenu>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Rescue Postcode: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "postcode" value="#{rescueRecordsController.rescueRecords.rescueAddress.postcode}" binding="#{postcode}" required="true"
+                                         validatorMessage="Please enter a valid postcode."
+                                         requiredMessage="Please enter a postcode. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td width ="100" valign="top">User ID: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userId" value="#{rescueRecordsController.rescueRecords.rescuer.userId}" binding="#{userId}" required="true"
+                                         validatorMessage="Please enter a valid User Id."
+                                         requiredMessage="Please enter an User Id. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td width ="100" valign="top">User Type: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userType" value="#{rescueRecordsController.rescueRecords.rescuer.userType}" binding="#{userType}" required="true"
+                                         validatorMessage="Please enter a valid User Type."
+                                         requiredMessage="Please enter an User Type. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td width ="100" valign="top">User Name: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userName" value="#{rescueRecordsController.rescueRecords.rescuer.userName}" binding="#{userName}" required="true"
+                                         validatorMessage="Please enter a valid User Name."
+                                         requiredMessage="Please enter an User Name. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <td width ="100" valign="top">User Street Number: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userStreetNumber" value="#{rescueRecordsController.rescueRecords.rescuer.userAddress.streetNumber}" binding="#{userStreetNumber}" required="true"
+                                         validatorMessage="Please enter a valid street number."
+                                         requiredMessage="Please enter an street number. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Street Address: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userStreetAddress" value="#{rescueRecordsController.rescueRecords.rescuer.userAddress.streetAddress}" binding="#{userStreetAddress}" required="true"
+                                         validatorMessage="Please enter a valid street address."
+                                         requiredMessage="Please enter an street address. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Suburb: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userSuburb" value="#{rescueRecordsController.rescueRecords.rescuer.userAddress.suburb}" binding="#{userSuburb}" required="true"
+                                         validatorMessage="Please enter a valid suburb."
+                                         requiredMessage="Please enter a suburb. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User State: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userState" value="#{rescueRecordsController.rescueRecords.rescuer.userAddress.state}" binding="#{userState}" required="true"
+                                         validatorMessage="Please enter a valid state."
+                                         requiredMessage="Please enter a state. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Postcode: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userPostcode" value="#{rescueRecordsController.rescueRecords.rescuer.userAddress.postcode}" binding="#{userPostcode}" required="true"
+                                         validatorMessage="Please enter a valid postcode."
+                                         requiredMessage="Please enter a postcode. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">Description: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "description" value="#{rescueRecordsController.rescueRecords.description}" required="true"
+                                         validatorMessage="Please enter a valid Description."
+                                         requiredMessage="Please enter a Description. " style="width: 300px;"></h:inputText>    
+                        </td>
+                    </tr>
+                    
+                </table>
+
+                <h:commandButton id="Save" value="Save" action="#{rescueRecordsManagedBean.editRescueRecords(rescueRecordsController.rescueRecords)}"  class="btn btn-primary" >
+                    <f:param name="rescueId" value="#{rescueRecordsController.rescueId + 1}"/>
+                </h:commandButton>
+                <h:commandButton id="Close" value="Close" action="/user/rescueRecords.xhtml" class="btn btn-primary" style="margin-left: 5px">
+                    <f:param name="rescueId" value="#{rescueRecordsController.rescueId + 1}"/>
+                </h:commandButton> 
+<!--                <h:button id="Close" value="Close" onclick="location.href='rescueRecords.xhtml'" class="btn btn-primary">
+                    <f:param name="rescueId" value="#{rescueRecordsController.rescueId + 1}"/>
+                </h:button>-->
+            </h:form>
+<!--            <button id="Close" value="Close" onclick="location.href='rescueRecords.xhtml'" class="btn btn-primary">
+                    Close
+            </button>-->
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Native animals</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+        <script type="text/javascript"> 
+            //<![CDATA[
+            $(document).ready(function(){
+                $("#myInput").on("keyup",function(){
+                    var value = $(this).val().toLowerCase();
+                    var rows = document.getElementById("MyForm").getElementsByTagName("tr");
+                    var size = rows.length;
+                    for(var i=1; i < size; i++){
+                        var condition = rows[i].cells[3].textContent.toLowerCase().indexOf(value);
+                        if(condition > -1){
+                            rows[i].style.display = "";
+                        } else {
+                            rows[i].style.display = "none";
+                        }
+                     }     
+                   });
+                });
+         //]]>
+        </script>  
+    </h:head>
+    
+    <h:body style="background-image:url('/NativeAnimals/user.jpg'); background-size:cover">
+           
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="float:left; margin-left:0px; padding-left:0px; display: inline-block; vertical-align:">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="/NativeAnimals/index.xhtml" style="font-size:25px; margin-left:0px; float:left">Native animals</a>
+                </div>    
+                <ul class="nav navbar-nav" style="font-size:20px; display: inline-block; vertical-align:">
+                <li><a href="/NativeAnimals/index.xhtml">Home</a></li>
+                <li class="active"><a href="/NativeAnimals/user/rescueRecords.xhtml">Rescue record</a></li>
+<!--                <li><a href="login.xhtml">Login</a></li>
+                <li><a href="user.xhtml">User</a></li>-->
+                </ul>
+              <form class="navbar-form navbar-left" action="/action_page.php" style="padding-left: 800px">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="myInput" placeholder="Search Animal ID..." name="search" style="font-size:20px; width: 400px"></input>
+                    <div class="input-group-btn" style="padding-right:0px">
+                        <div class="btn btn-default"> 
+                            <i class="glyphicon glyphicon-search"></i>
+                        </div>
+                    </div>
+                </div>
+             </form>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Rescue Records  List
+                </div>
+            </div>
+
+            <h:form id="MyForm">
+                <table class="table table-bordered table-striped">
+                    <!-- For each property in properties ArrayList... --> 
+                    <tr id="formTitle">
+                        <td> 
+                            <h:outputLabel id="RescueId" value="Rescue ID"  />
+                        </td>
+                        
+                        <td> 
+                            <h:outputLabel id="RescueDate" value="Rescue Date"  />
+                        </td>
+                        
+                        <td> 
+                            <h:outputLabel id="AnimalType" value="Animal Type"  />
+                        </td>
+
+                        <td> 
+                            <h:outputLabel id="AnimalId" value="Animal ID"  />
+                        </td>                        
+
+                        <td> 
+                            <h:outputLabel id="RescuerId" value="Rescuer ID"  />
+                        </td>                        
+                        
+                        <td> 
+                            <h:outputLabel id="Description" value="Description"  />
+                        </td>                        
+
+                    </tr>
+
+                    <ui:repeat id="Myrepeat" value="#{rescueRecordsApplication.rescueRecords}"  var="rescueRecords" varStatus="status"> 
+
+                        <tr onclick="document.getElementById('MyForm:principle').value = document.getElementById('MyForm:Myrepeat:#{status.index}:outPut').textContent"> 
+                            <td>
+                                <h:outputText value="#{rescueRecordsApplication.rescueRecords.get(status.index).rescueId}" id="rescueId" /> 
+                            </td>
+
+                            <td> 
+                                <h:outputText id="outRecueDate" value="#{rescueRecordsApplication.rescueRecords.get(status.index).rescueDate}">
+                                 <f:converter converterId="DateTimeConverter" />
+                                </h:outputText>
+                            </td>
+                            
+                            <td>
+                                <h:outputText id="outAnimalType" value="#{rescueRecordsApplication.rescueRecords.get(status.index).animalType}"></h:outputText>
+                            </td>
+                            
+                            <td>
+                                <h:outputText id="outAnimalId" value="#{rescueRecordsApplication.rescueRecords.get(status.index).animalId}"></h:outputText>
+                            </td>
+                            
+                             <td>
+                                <h:outputText id="outRescuerId" value="#{rescueRecordsApplication.rescueRecords.get(status.index).rescuer.userId}"></h:outputText>
+                            </td>
+                            
+                            <td>
+                                <h:outputText id="outDescription" value="#{rescueRecordsApplication.rescueRecords.get(status.index).description}"></h:outputText>
+                            </td>
+                            
+                            
+                            <td>
+                                <h:commandLink value="View | " action="/user/rescueRecordsDetail.xhtml">
+                                    <!-- pass the parameter to next page, the param name is propertyID, and the value is index + 1. 
+                                    You can get the value from next page using the indexController -->
+                                    <f:param name="rescueId" value="#{status.index + 1}"/>
+
+                                </h:commandLink>
+                                <h:commandLink value="Edit | " action="/user/rescueRecordsEdit.xhtml">
+                                    <!-- pass the parameter to next page, the param name is propertyID, and the value is index + 1. 
+                                    You can get the value from next page using the indexController -->
+                                    <f:param name="rescueId"  value="#{status.index + 1}"></f:param> 
+                                </h:commandLink>
+
+                                <h:commandLink value="Delete" action="#{removeRescueRecords.removeRescueRecords(rescueRecordsApplication.rescueRecords.get(status.index).rescueId)}">
+                                </h:commandLink>
+
+                                <h:outputText value=" "/>
+                            </td>
+
+                        </tr> 
+
+                    </ui:repeat> 
+
+                </table>
+
+                <div>
+                    <h:commandButton id="add" value="Add" action="/user/rescueRecordAdd.xhtml" class="btn btn-primary" />
+
+                    <h:commandButton id="viewAll" value="View All" action="#{searchRescueRecords.searchAll()}" class="btn btn-primary" style="margin-left: 5px">
+                        <f:param name="rescueId" value="#{status.index + 1}"/>
+                    </h:commandButton>
+
+                </div>
+                <div style="margin-top:10px">
+                    <h:inputText value="#{searchRescueRecords.searchByRescueId}" id="searchById" required="true" onchange="if (document.getElementById('MyForm:searchById').value.trim() == '') {document.getElementById('MyForm:searchById').value = 0;}"/> 
+                    <h:commandButton id="searchId" value="Search by Rescue ID" action="#{searchRescueRecords.searchRescueRecordsByRescueId(searchRescueRecords.searchByRescueId)}" class="btn btn-primary">
+                        <f:param name="rescueId" value="#{status.index + 1}"/>
+                    </h:commandButton>
+                </div>
+                <div style="margin-top:10px">
+                    <h:inputText value="#{searchRescueRecords.searchByUserId}" id="searchByUserId" required="true" /> 
+                    <h:commandButton id="searchUserId" value="Search by Rescuer ID" action="#{searchRescueRecords.searchRescueRecordsByUserId(searchRescueRecords.searchByUserId)}" class="btn btn-primary">
+                        <f:param name="rescueId" value="#{status.index + 1}"/>
+                    </h:commandButton>
+                </div>
+                
+                <div style="margin-top:10px">
+                    <h:inputText value="#{searchRescueRecords.searchByType}" id="searchByType" pt:placeholder="Input Animal Type..." /> 
+                    <h:inputText value="#{searchRescueRecords.searchByDesc}" id="searchByDesc" pt:placeholder="Input Description..." style="margin-left: 5px"/>
+                    <h:commandButton id="searchTypeAndDesc" value="Combination Search" action="#{searchRescueRecords.searchRescueRecordsByTypeAndDesc(searchRescueRecords.searchByType,searchRescueRecords.searchByDesc)}" class="btn btn-primary">
+                        <f:param name="rescueId" value="#{status.index + 1}"/>
+                    </h:commandButton>
+                </div>           
+                <div>
+                    <h:commandButton id="logoutButton" value="Logout" action="#{logoutController.logout()}" class="btn btn-primary"/>
+                </div>
+                
+            </h:form>
+            
+        </div>
+    </h:body>
+</html>

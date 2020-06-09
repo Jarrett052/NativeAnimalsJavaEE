@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Native animals</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+    </h:head>
+    <h:body style="background-image:url(333.jpg); background-size:cover">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="float:left; margin-left:0px; padding-left:0px; display: inline-block; vertical-align:">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="index.xhtml" style="font-size:25px; margin-left:0px; float:left">Native animals</a>
+                </div>    
+                <ul class="nav navbar-nav" style="font-size:20px; display: inline-block; vertical-align:">
+                <li><a href="index.xhtml">Home</a></li>
+                <li class="active"><a href="rescueRecords.xhtml">Rescue record</a></li>
+                <li><a href="login.xhtml">Login</a></li>
+                </ul>
+              <form class="navbar-form navbar-left" action="/action_page.php" style="padding-left: 800px">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="search" style="font-size:20px; width: 400px"></input>
+                    <div class="input-group-btn" style="padding-right:0px">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+             </form>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Edit User
+                </div>
+            </div>
+
+            <h:form id="MyForm">
+                <table class="table table-bordered ">
+
+                    <tr>
+                        <td width ="150" valign="top">User ID:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "UserId" >#{usersController.users.userId}</h:outputLabel>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Type:</td>
+                        <td valign="bottom">
+                            <h:inputText id = "userType" value="#{usersController.users.userType}" required="true"
+                                         validatorMessage="Please enter a valid User Type."
+                                         requiredMessage="Please enter a valid User Type. ">
+                            </h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Name:</td>
+                        <td valign="bottom">
+                            <h:inputText id = "userName" value="#{usersController.users.userName}" required="true"
+                                         validatorMessage="Please enter a valid User Name."
+                                         requiredMessage="Please enter a User Name. "></h:inputText>    
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td width ="100" valign="top">User Street Number: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userStreetNumber" value="#{usersController.users.userAddress.streetNumber}" binding="#{userStreetNumber}" required="true"
+                                         validatorMessage="Please enter a valid street number."
+                                         requiredMessage="Please enter an street number. "></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Street Address: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userStreetAddress" value="#{usersController.users.userAddress.streetAddress}" binding="#{userStreetAddress}" required="true"
+                                         validatorMessage="Please enter a valid street address."
+                                         requiredMessage="Please enter an street address. "></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Suburb: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userSuburb" value="#{usersController.users.userAddress.suburb}" binding="#{userSuburb}" required="true"
+                                         validatorMessage="Please enter a valid suburb."
+                                         requiredMessage="Please enter a suburb. "></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User State: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userState" value="#{usersController.users.userAddress.state}" binding="#{userState}" required="true"
+                                         validatorMessage="Please enter a valid state."
+                                         requiredMessage="Please enter a state. "></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Postcode: </td>
+                        <td valign="bottom">
+                            <h:inputText id = "userPostcode" value="#{usersController.users.userAddress.postcode}" binding="#{userPostcode}" required="true"
+                                         validatorMessage="Please enter a valid postcode."
+                                         requiredMessage="Please enter a postcode. "></h:inputText>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Phone:</td>
+                        <td valign="bottom">
+                            <h:inputText id = "description" value="#{usersController.users.userPhone}" required="true"
+                                         validatorMessage="Please enter a valid User Phone."
+                                         requiredMessage="Please enter an User Phone. "></h:inputText>    
+                        </td>
+                    </tr>
+                    
+                </table>
+
+                <h:commandButton id="Save" value="Save" action="#{usersManagedBean.editUsers(usersController.users)}"  class="btn btn-primary" >
+                    <f:param name="userId" value="#{usersController.userId + 1}"/>
+                </h:commandButton>
+                <h:commandButton id="Close" value="Close" action="user.xhtml" class="btn btn-primary" >
+                    <f:param name="userId" value="#{usersController.userId + 1}"/>
+                </h:commandButton> 
+<!--                <h:button id="Close" value="Close" onclick="location.href='rescueRecords.xhtml'" class="btn btn-primary">
+                    <f:param name="rescueId" value="#{usersController.userId + 1}"/>
+                </h:button>-->
+            </h:form>
+<!--            <button id="Close" value="Close" onclick="location.href='rescueRecords.xhtml'" class="btn btn-primary">
+                    Close
+            </button>-->
+        </div>
+    </h:body>
+</html>
+

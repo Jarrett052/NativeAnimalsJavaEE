@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Native animals</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+    </h:head>
+    <h:body style="background-image:url('/NativeAnimals/RescueRecordDetail.jpg'); background-size:cover">
+        
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="float:left; margin-left:0px; padding-left:0px; display: inline-block; vertical-align:">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="/NativeAnimals/index.xhtml" style="font-size:25px; margin-left:0px; float:left">Native animals</a>
+                </div>    
+                <ul class="nav navbar-nav" style="font-size:20px; display: inline-block; vertical-align:">
+                <li><a href="/NativeAnimals/index.xhtml">Home</a></li>
+                <li><a href="/NativeAnimals/admin/rescueRecords.xhtml">Rescue record</a></li>
+                <li class="active"><a href="/NativeAnimals/admin/user.xhtml">User</a></li>
+<!--                <li><a href="login.xhtml">Login</a></li>-->
+                </ul>
+              <form class="navbar-form navbar-left" action="/action_page.php" style="padding-left: 800px">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." name="search" style="font-size:20px; width: 400px"></input>
+                    <div class="input-group-btn" style="padding-right:0px">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+             </form>
+            </div>
+        </nav>
+        
+        
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                   View User Details
+                </div>
+            </div>
+
+            <h:form id="MyForm">
+                <table class="table table-bordered ">
+                    <tr>
+                        <td width ="150" valign="top">User ID:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "RescueId" >#{usersController.users.userId}</h:outputLabel>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Type:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "UserType" value="#{usersController.users.userType}">                           
+                            </h:outputLabel>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Name:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "UserName" >#{usersController.users.userName}</h:outputLabel>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Address:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "UserAddress" >#{usersController.users.userAddress}</h:outputLabel>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width ="100" valign="top">User Phone:</td>
+
+                        <td valign="bottom">
+                            <h:outputLabel id = "UserPhone" >#{usersController.users.userPhone}</h:outputLabel>    
+                        </td>
+                    </tr>
+                    
+ 
+                </table>   
+                <h:commandButton id="Close" value="Cancel" action="/admin/user.xhtml" class="btn btn-primary" />
+
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Authentication Error</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body style="background-image:url('/NativeAnimals/Authentication.jpg'); background-size:cover">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="float:left; margin-left:0px; padding-left:0px; display: inline-block; vertical-align:">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="index.xhtml" style="font-size:25px; margin-left:0px; float:left">Authentication Application</a>
+                </div>    
+                    <ul class="nav navbar-nav" style="font-size:20px; display: inline-block; vertical-align:">
+                    <li ><a href="index.xhtml">Home</a></li>
+                    <li><a href="login.xhtml">Login</a></li>
+                    </ul>
+            </div>
+        </nav> 
+        <center style="padding-top: 30px">
+        <h1 style="font-size: 40px">Authentication Error</h1>
+        </center>
+        <div style="font-size:30px; text-align: center; margin-top:30px">
+        <p>The user credentials you have supplied are incorrect.</p>
+        <p>Please attempt to <h:link outcome="login" value="login" class="btn btn-primary" style="font-size: 25px" /> again.</p>
+        </div>
+    </h:body>
+</html>
+

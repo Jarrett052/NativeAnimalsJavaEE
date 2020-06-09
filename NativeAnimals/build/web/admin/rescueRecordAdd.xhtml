@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Native animals</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--  DatePicker JavaScript & CSS -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+        <script>
+            $(document).ready(function() {
+                $(".datepicker").datepicker({
+                dateFormat: 'dd M yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1990:2030"
+                });
+            });
+//            $( ".selector" ).datepicker( "setDate", "+1" );
+        </script>
+        <h:outputScript library="js" name="formatDatePicker.js" />
+    <!--  DatePicker JavaScript & CSS -->
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>  
+    </h:head>
+    <h:body style="background-image:url('/NativeAnimals/giraffe.jpg'); background-size:cover">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="float:left; margin-left:0px; padding-left:0px; display: inline-block; vertical-align:">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="/NativeAnimals/index.xhtml" style="font-size:25px; margin-left:0px; float:left">Native animals</a>
+                </div>    
+                <ul class="nav navbar-nav" style="font-size:20px; display: inline-block; vertical-align:">
+                <li><a href="/NativeAnimals/index.xhtml">Home</a></li>
+                <li class="active"><a href="/NativeAnimals/admin/rescueRecords.xhtml">Rescue record</a></li>
+<!--                <li><a href="login.xhtml">Login</a></li>-->
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                      Add Rescue Records
+                </div>
+            </div>
+            <div>
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Create"/></h1>
+                        <table class="table table-bordered ">
+                            <tr id="DateInput">
+                                <td width ="200">
+                                    <h:outputLabel value="Rescue Date" for="RescueDate" />
+                                </td>
+                                <td>
+                                    <h:inputText id="RescueDate" styleClass="form-control datepicker" value="#{rescueRecords.rescueDate}" title="rescueDate" style="width: 300px;"> 
+                                        <f:converter converterId="DateTimeConverter"/>
+                                    </h:inputText>   
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Animal Type" for="AnimalType" />
+                                </td>
+                                <td>
+                                    <h:inputText id="AnimalType" value="#{rescueRecords.animalType}" title="animalType" style="width: 300px;"/>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Animal ID" for="AnimalID" />
+                                </td>
+                                <td>
+                                    <h:inputText id="AnimalID" value="#{rescueRecords.animalId}" title="animalId" style="width: 300px;"/>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Animal Name" for="AnimalName" />
+                                </td>
+                                <td>
+                                    <h:inputText id="AnimalName" value="#{rescueRecords.animalName}" title="animalName" style="width: 300px;"/>
+                                </td>
+                            </tr>                            
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Rescue Street Number" for="RescueStreetNumber" />
+                                </td>
+                                <td>
+                                    <h:inputText id="RescueStreetNumber" value="#{rescueRecords.rescueStreetNumber}" title="rescueStreetNumber" style="width: 300px;"/>
+                                </td>
+                            </tr>                            
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Rescue Street Address" for="RescueStreetAddress" />
+                                </td>
+                                <td>
+                                    <h:inputText id="RescueStreetAddress" value="#{rescueRecords.rescueStreetAddress}" title="rescueStreetAddress" style="width: 300px;"/>
+                                </td>
+                            </tr>                                  
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Rescue Suburb" for="RescueSuburb" />
+                                </td>
+                                <td>
+                                    <h:inputText id="RescueSuburb" value="#{rescueRecords.rescueSuburb}" title="rescueSuburb" style="width: 300px;"/>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Rescue State" for="RescueState" />
+                                </td>
+                                <td>
+                                    <h:inputText id="RescueState" value="#{rescueRecords.rescueState}" title="rescueState" style="width: 300px;"/>
+                                </td>
+                            </tr>   
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Rescue Postcode" for="RescuePostcode" />
+                                </td>
+                                <td>
+                                    <h:inputText id="RescuePostcode" value="#{rescueRecords.rescuePostcode}" title="rescuePostcode" style="width: 300px;"/>
+                                </td>
+                            </tr>                                     
+                                                      
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="User ID" for="UserID" />
+                                </td>
+                                <td>
+                                    <h:inputText id="UserID" value="#{rescueRecords.userId}" title="userId" style="width: 300px;"/>
+                                </td>
+                            </tr>                             
+
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="User Type" for="UserType" />
+                                </td>
+                                <td>
+                                    <h:inputText id="UserType" value="#{rescueRecords.userType}" title="userType" style="width: 300px;"/>
+                                </td>
+                            </tr> 
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="User Name" for="UserName" />
+                                </td>
+                                <td>
+                                    <h:inputText id="UserName" value="#{rescueRecords.userName}" title="userName" style="width: 300px;"/>
+                                </td>
+                            </tr>                             
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="User Street Number" for="UserStreetNumber" />
+                                </td>
+                                <td>
+                                    <h:inputText id="UserStreetNumber" value="#{rescueRecords.userStreetNumber}" title="userStreetNumber" style="width: 300px;"/>
+                                </td>
+                            </tr>                             
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="User Street Address" for="UserStreetAddress" />
+                                </td>
+                                <td>
+                                    <h:inputText id="UserStreetAddress" value="#{rescueRecords.userStreetAddress}" title="userStreetAddress" style="width: 300px;"/>
+                                </td>
+                            </tr>                             
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="User Suburb" for="UserSuburb" />
+                                </td>
+                                <td>
+                                    <h:inputText id="UserSuburb" value="#{rescueRecords.userSuburb}" title="userSuburb" style="width: 300px;"/>
+                                </td>
+                            </tr>                             
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="User State" for="UserState" />
+                                </td>
+                                <td>
+                                    <h:inputText id="UserState" value="#{rescueRecords.userState}" title="userState" style="width: 300px;"/>
+                                </td>
+                            </tr>                             
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="User Postcode" for="UserPostcode" />
+                                </td>
+                                <td>
+                                    <h:inputText id="UserPostcode" value="#{rescueRecords.userPostcode}" title="userPostcode" style="width: 300px;"/>
+                                </td>
+                            </tr>                             
+                            
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Description" for="Description" />
+                                </td>
+                                <td>
+                                    <h:inputText id="Description" value="#{rescueRecords.description}" title="description" style="width: 300px;"/>
+                                </td>
+                            </tr>                             
+                            
+                            <tr>
+                                <td height="30">
+
+                                </td>
+                                <td>
+
+                                </td>
+
+                            </tr>
+                        </table>
+                        <h:commandButton id="submit" value="Submit" action="#{addRescueRecords.addRescueRecords(rescueRecords)}" class="btn btn-primary" />
+                        <h:commandButton id="close" value="Close" action="/admin/rescueRecords.xhtml" class="btn btn-primary"/>   
+                    
+                    </h:form>
+
+                </f:view>
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

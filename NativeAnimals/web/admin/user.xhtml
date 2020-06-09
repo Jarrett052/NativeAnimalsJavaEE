@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Native animals</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript"> 
+            //<![CDATA[
+            $(document).ready(function(){
+                $("#myInput").on("keyup",function(){
+                    var value = $(this).val().toLowerCase();
+                    var rows = document.getElementById("MyForm").getElementsByTagName("tr");
+                    var size = rows.length;
+                    for(var i=1; i < size; i++){
+                        var condition = rows[i].cells[2].textContent.toLowerCase().indexOf(value);
+                        if(condition > -1){
+                            rows[i].style.display = "";
+                        } else {
+                            rows[i].style.display = "none";
+                        }
+                     }     
+                   });
+                });
+         //]]>
+        </script>  
+        <h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+    </h:head>
+    
+    <h:body style="background-image:url('/NativeAnimals/user.jpg'); background-size:cover">
+           
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="float:left; margin-left:0px; padding-left:0px; display: inline-block; vertical-align:">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="/NativeAnimals/index.xhtml" style="font-size:25px; margin-left:0px; float:left">Native animals</a>
+                </div>    
+                <ul class="nav navbar-nav" style="font-size:20px; display: inline-block; vertical-align:">
+                <li><a href="/NativeAnimals/index.xhtml">Home</a></li>
+                <li><a href="/NativeAnimals/admin/rescueRecords.xhtml">Rescue record</a></li>
+                <li class="active"><a href="/NativeAnimals/admin/user.xhtml">User</a></li>
+<!--                <li><a href="login.xhtml">Login</a></li>-->
+<!--                <li class="active"><a href="user.xhtml">User</a></li>-->
+                </ul>
+              <form class="navbar-form navbar-left" action="/action_page.php" style="padding-left: 800px">
+                <div class="input-group">
+                    <input type="text" id="myInput" class="form-control" placeholder="Search User Name..." name="search" style="font-size:20px; width: 400px"></input>
+                    <div class="input-group-btn" style="padding-right:0px">
+                        <div class="btn btn-default"> 
+                            <i class="glyphicon glyphicon-search"></i>
+                        </div>
+                    </div>
+                </div>
+             </form>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    User  List
+                </div>
+            </div>
+
+            <h:form id="MyForm">
+                <table class="table table-bordered table-striped">
+                    <!-- For each property in properties ArrayList... --> 
+                    <tr>
+                        <td> 
+                            <h:outputLabel id="UserId" value="User ID"  />
+                        </td>
+                        
+                        <td> 
+                            <h:outputLabel id="UserType" value="User Type"  />
+                        </td>
+                        
+                        <td> 
+                            <h:outputLabel id="UserName" value="User Name"  />
+                        </td>                                         
+                        
+                        <td> 
+                            <h:outputLabel id="UserPhone" value="User Phone"  />
+                        </td>
+                        
+                    </tr>
+
+                    <ui:repeat id="Myrepeat" value="#{usersApplication.users}"  var="users" varStatus="status"> 
+
+                        <tr onclick="document.getElementById('MyForm:principle').value = document.getElementById('MyForm:Myrepeat:#{status.index}:outPut').textContent"> 
+                            <td>
+                                <h:outputText value="#{usersApplication.users.get(status.index).userId}" id="userId" /> 
+                            </td>
+
+                            <td> 
+                                <h:outputText id="outUserType" value="#{usersApplication.users.get(status.index).userType}">
+                                </h:outputText>
+                            </td>
+                            
+                            <td>
+                                <h:outputText id="outUserName" value="#{usersApplication.users.get(status.index).userName}"></h:outputText>
+                            </td>                        
+                            
+                             <td>
+                                <h:outputText id="outUserPhone" value="#{usersApplication.users.get(status.index).userPhone}"></h:outputText>
+                            </td>
+                            
+                           
+                            
+                            <td>
+                                <h:commandLink value="View | " action="/admin/userDetail.xhtml">
+                                    <!-- pass the parameter to next page, the param name is propertyID, and the value is index + 1. 
+                                    You can get the value from next page using the indexController -->
+                                    <f:param name="userId" value="#{status.index + 1}"/>
+
+                                </h:commandLink>
+                                <h:commandLink value="Edit | " action="/admin/userEdit.xhtml">
+                                    <!-- pass the parameter to next page, the param name is propertyID, and the value is index + 1. 
+                                    You can get the value from next page using the indexController -->
+                                    <f:param name="userId"  value="#{status.index + 1}"></f:param> 
+                                </h:commandLink>
+
+                                <h:commandLink value="Delete" action="#{removeUsers.removeUsers(usersApplication.users.get(status.index).userId)}">
+                                </h:commandLink>
+
+                                <h:outputText value=" "/>
+                            </td>
+
+                        </tr> 
+
+                    </ui:repeat> 
+
+                </table>
+
+                <div>
+                    <h:commandButton id="add" value="Add" action="/admin/userAdd.xhtml" class="btn btn-primary" />
+
+                    <h:commandButton id="viewAll" value="View All" action="#{searchUsers.searchAll()}" class="btn btn-primary" style="margin-left: 5px">
+                        <f:param name="userId" value="#{status.index + 1}"/>
+                    </h:commandButton>
+                </div>
+                <div style="margin-top: 10px">
+                    <h:inputText value="#{searchUsers.searchByUserId}" id="searchById" required="true" onchange="if (document.getElementById('MyForm:searchById').value.trim() == '') {document.getElementById('MyForm:searchById').value = 0;}"/> 
+                    <h:commandButton id="searchId" value="Search by User ID" action="#{searchUsers.searchUsersByUserId(searchUsers.searchByUserId)}" class="btn btn-primary">
+                        <f:param name="userId" value="#{status.index + 1}"/>
+                    </h:commandButton>
+                </div>
+                <div>
+                    <h:commandButton id="logoutButton" value="Logout" action="#{logoutController.logout()}" class="btn btn-primary"/>
+                </div>   
+            </h:form>
+        </div>
+    </h:body>
+</html>
